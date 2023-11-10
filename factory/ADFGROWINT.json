@@ -1,0 +1,9 @@
+{
+	"name": "ADFGROWINT",
+	"location": "francecentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "aa8d34a6-893b-4530-8cab-169740530ac9",
+		"tenantId": "70d01e02-bce4-44b1-b646-fbf6cbb33d61"
+	}
+}
