@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
 # URL de la página web a raspar
-url = 'https://www.ejemplo.com'
+url = 'https://www.xiaohongshu.com/explore/64391ea00000000012031c65?app_platform=ios&app_version=7.83.1&share_from_user_hidden=true&type=video&xhsshare=CopyLink&appuid=56d68073aed75832340b430a&apptime=1681533592'
 
 # Realiza una solicitud HTTP GET a la URL
 response = requests.get(url)
