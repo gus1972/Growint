@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "AccessOrigenNextcloud",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AccessGrowintNextcloud",
