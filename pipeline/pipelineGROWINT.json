@@ -55,7 +55,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText1",
+						"referenceName": "Blob_Storage_Growint",
 						"type": "DatasetReference"
 					}
 				]

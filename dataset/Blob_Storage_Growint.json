@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "Blob_Storage_Growint",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
