@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy Next",
+				"name": "Copy NextCloud Power BI",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
