@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Copy NextCloud Power BI",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -27,6 +27,10 @@
 					},
 					"sink": {
 						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
+						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
@@ -51,7 +55,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AccessOrigenNextcloud",
+						"referenceName": "Blob_Storage_Growint",
 						"type": "DatasetReference"
 					}
 				]
