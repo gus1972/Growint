@@ -1,49 +1,45 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 
-# URL de la página web a raspar
-url = 'https://www.xiaohongshu.com/explore/64391ea00000000012031c65?app_platform=ios&app_version=7.83.1&share_from_user_hidden=true&type=video&xhsshare=CopyLink&appuid=56d68073aed75832340b430a&apptime=1681533592'
+def descargar_imagen(url, directorio):
+    response = requests.get(url, stream=True)
+    if response.status_code == 200:
+        nombre_archivo = os.path.join(directorio, os.path.basename(url))
+        with open(nombre_archivo, 'wb') as archivo:
+            for chunk in response.iter_content(chunk_size=128):
+                archivo.write(chunk)
+        print(f"Imagen descargada: {nombre_archivo}")
 
-# Realiza una solicitud HTTP GET a la URL
-response = requests.get(url)
+##def scrape_web(url):
+    # Realizar la solicitud HTTP
+  ##  response = requests.get(url)
+    
+    # Verificar si la solicitud fue exitosa
+  ##  if response.status_code == 200:
+        # Crear el objeto BeautifulSoup
+     ##   soup = BeautifulSoup(response.text, 'html.parser')
 
-# Verifica si la solicitud fue exitosa
-if response.status_code == 200:
-    # Analiza el contenido de la página con BeautifulSoup
-    soup = BeautifulSoup(response.text, 'html.parser')
+        # Crear un directorio para almacenar las imágenes
+     ##   directorio_imagenes = 'imagenes_descargadas'
+     ##   os.makedirs(directorio_imagenes, exist_ok=True)
 
-    # Encuentra todos los enlaces en la página
-    links = []
-    for link in soup.find_all('a'):
-        link_url = link.get('href')
-        if link_url:
-            # Convierte las URLs relativas en URLs absolutas
-            absolute_url = urljoin(url, link_url)
-            links.append(absolute_url)
+        # Extraer enlaces, imágenes y texto
+      ##  for enlace in soup.find_all('a', href=True):
+      ##      enlace_absoluto = urljoin(url, enlace['href'])
+       ##     print(f"Enlace: {enlace_absoluto}")
+##
+       # for imagen in soup.find_all('img', src=True):
+        #    imagen_absoluta = urljoin(url, imagen['src'])
+         #   descargar_imagen(imagen_absoluta, directorio_imagenes)
 
-    # Encuentra todas las imágenes en la página
-    images = []
-    for img in soup.find_all('img'):
-        img_url = img.get('src')
-        if img_url:
-            # Convierte las URLs relativas en URLs absolutas
-            absolute_url = urljoin(url, img_url)
-            images.append(absolute_url)
+        #texto = soup.get_text()
+        #print(f"Texto: {texto}")
 
-    # Encuentra el texto en la página
-    text = soup.get_text()
+#if __name__ == "__main__":
+    # URL de ejemplo
+    url_ejemplo = "https://www.xiaohongshu.com/explore/64420138000000000800c6a5"
 
-    # Puedes imprimir o guardar los enlaces, imágenes y texto como desees
-    print("Enlaces:")
-    for link in links:
-        print(link)
-
-    print("\nImágenes:")
-    for image in images:
-        print(image)
-
-    print("\nTexto:")
-    print(text)
-else:
-    print(f"No se pudo acceder a la página {url}. Código de estado: {response.status_code}")
+    # Llamada a la función para hacer scraping
+   ## scrape_web(url_ejemplo)
