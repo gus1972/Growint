@@ -40,6 +40,20 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "This is the WebDAV interface. It can only be accessed by WebDAV clients such as the Nextcloud desktop sync client.",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "This is the WebDAV interface. It can only be accessed by WebDAV clients such as the Nextcloud desktop sync client.",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
