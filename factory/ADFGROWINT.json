@@ -3,7 +3,8 @@
 	"properties": {
 		"globalConfigurations": {
 			"factoryStagingLSReferenceName": "AzureBlobStorage1",
-			"factoryStagingLSType": "LinkedServiceReference"
+			"factoryStagingLSType": "LinkedServiceReference",
+			"factoryStagingFolderPath": "blobgrowint"
 		}
 	},
 	"location": "francecentral",
