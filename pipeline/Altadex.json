@@ -36,7 +36,44 @@
 							"fileExtension": ".csv"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['count']"
+								},
+								"sink": {
+									"name": "count"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_count']"
+								},
+								"sink": {
+									"name": "total_count"
+								}
+							},
+							{
+								"source": {
+									"path": "$['comerciales'][0]['id']"
+								},
+								"sink": {
+									"name": "id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['comerciales'][0]['name']"
+								},
+								"sink": {
+									"name": "name"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
