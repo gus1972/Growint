@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ADFGROWINT"
+		},
+		"AccessGrowintNextcloud_password": {
+			"value": ""
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AccessGrowintNextcloud_properties_typeProperties_url": {
+			"value": "https://cloud.growintegration.es/remote.php/dav/files/GI_Azure"
+		},
+		"AccessGrowintNextcloud_properties_typeProperties_userName": {
+			"value": "GI_Azure"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "http://remoto2.macrotubo.es:8889/altadex/vERP_2_dat_dat/v1/_process/pw_cmr_loa?api_key=12345mikil0n"
+		}
+	}
+}

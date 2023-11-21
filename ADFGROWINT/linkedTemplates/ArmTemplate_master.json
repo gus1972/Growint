@@ -1,0 +1,77 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Nombre de instancia de Data Factory",
+			"defaultValue": "ADFGROWINT"
+		},
+		"AccessGrowintNextcloud_password": {
+			"type": "secureString",
+			"metadata": "Cadena protegida para \"password\"de \"AccessGrowintNextcloud\""
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Cadena protegida para \"connectionString\"de \"AzureBlobStorage1\""
+		},
+		"AccessGrowintNextcloud_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://cloud.growintegration.es/remote.php/dav/files/GI_Azure"
+		},
+		"AccessGrowintNextcloud_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "GI_Azure"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://remoto2.macrotubo.es:8889/altadex/vERP_2_dat_dat/v1/_process/pw_cmr_loa?api_key=12345mikil0n"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI de la cuenta de almacenamiento que contiene las plantillas de ARM vinculadas."
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Token de SAS para la cuenta de almacenamiento que contiene las plantillas de ARM vinculadas"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ADFGROWINT_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AccessGrowintNextcloud_password": {
+						"value": "[parameters('AccessGrowintNextcloud_password')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AccessGrowintNextcloud_properties_typeProperties_url": {
+						"value": "[parameters('AccessGrowintNextcloud_properties_typeProperties_url')]"
+					},
+					"AccessGrowintNextcloud_properties_typeProperties_userName": {
+						"value": "[parameters('AccessGrowintNextcloud_properties_typeProperties_userName')]"
+					},
+					"RestService1_properties_typeProperties_url": {
+						"value": "[parameters('RestService1_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
