@@ -5,11 +5,11 @@
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "https://cloud.growintegration.es/index.php/s/ZBexZPbF96DJ5o4",
+			"url": "https://cloud.growintegration.es/index.php/s/gMmJHJaRMFi7SrL",
 			"enableServerCertificateValidation": false,
 			"authenticationType": "Basic",
 			"userName": "gustavo.anton@dataglobalservice.es",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEUzMDk4N0E3LUYyODAtNDIzMS1BMzkzLThBMDM0NkUxNjQ1NF84OGVhMmU2Yi04ZGI1LTQ3OTEtYjBmNi0xYzI2YTM4ZDIyZmEiDQp9"
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEUzMDk4N0E3LUYyODAtNDIzMS1BMzkzLThBMDM0NkUxNjQ1NF8xMzAxYzJkMy1iNGVjLTQyMGMtODdlNS1jMWZhMzU1YzY3NWEiDQp9"
 		}
 	}
 }
