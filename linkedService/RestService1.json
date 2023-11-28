@@ -1,0 +1,13 @@
+{
+	"name": "RestService1",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "http://remoto2.macrotubo.es:8889/altadex/vERP_2_dat_dat/v1/_process/pw_cmr_loa?api_key=12345mikil0n",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
+}

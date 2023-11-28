@@ -1,5 +1,13 @@
 {
 	"name": "ADFGROWINT",
+	"properties": {
+		"globalConfigurations": {
+			"factoryStagingLSReferenceName": "AzureBlobStorage1",
+			"factoryStagingLSType": "LinkedServiceReference",
+			"factoryStagingFolderPath": "blobgrowint",
+			"PipelineBillingEnabled": "true"
+		}
+	},
 	"location": "francecentral",
 	"identity": {
 		"type": "SystemAssigned",

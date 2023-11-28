@@ -1,9 +1,9 @@
 {
-	"name": "pipelineGROWINT",
+	"name": "Altadex",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy NextCloud Power BI",
+				"name": "Copy data1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -16,13 +16,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "DelimitedTextSource",
-						"storeSettings": {
-							"type": "HttpReadSettings",
-							"requestMethod": "GET"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
 						}
 					},
 					"sink": {
@@ -34,7 +33,7 @@
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".csv"
+							"fileExtension": ""
 						}
 					},
 					"enableStaging": false,
@@ -43,25 +42,42 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "This is the WebDAV interface. It can only be accessed by WebDAV clients such as the Nextcloud desktop sync client.",
-									"type": "String"
+									"path": "$['count']"
 								},
 								"sink": {
-									"name": "This is the WebDAV interface. It can only be accessed by WebDAV clients such as the Nextcloud desktop sync client.",
-									"type": "String"
+									"name": "count"
+								}
+							},
+							{
+								"source": {
+									"path": "$['total_count']"
+								},
+								"sink": {
+									"name": "total_count"
+								}
+							},
+							{
+								"source": {
+									"path": "$['comerciales'][0]['id']"
+								},
+								"sink": {
+									"name": "id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['comerciales'][0]['name']"
+								},
+								"sink": {
+									"name": "name"
 								}
 							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
+						]
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "AccessOrigenNextcloud",
+						"referenceName": "RestResource2",
 						"type": "DatasetReference"
 					}
 				],
