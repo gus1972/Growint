@@ -1,45 +1,44 @@
-import os
-import requests
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from openpyxl import Workbook
 
-def descargar_imagen(url, directorio):
-    response = requests.get(url, stream=True)
-    if response.status_code == 200:
-        nombre_archivo = os.path.join(directorio, os.path.basename(url))
-        with open(nombre_archivo, 'wb') as archivo:
-            for chunk in response.iter_content(chunk_size=128):
-                archivo.write(chunk)
-        print(f"Imagen descargada: {nombre_archivo}")
+# Configurar el controlador de Firefox
+firefox_options = webdriver.FirefoxOptions()
+firefox_options.headless = False  # Puedes cambiarlo a True si no quieres una ventana visible
 
-##def scrape_web(url):
-    # Realizar la solicitud HTTP
-  ##  response = requests.get(url)
-    
-    # Verificar si la solicitud fue exitosa
-  ##  if response.status_code == 200:
-        # Crear el objeto BeautifulSoup
-     ##   soup = BeautifulSoup(response.text, 'html.parser')
+# Crear una instancia del navegador Firefox
+driver = webdriver.Firefox(options=firefox_options)
 
-        # Crear un directorio para almacenar las imágenes
-     ##   directorio_imagenes = 'imagenes_descargadas'
-     ##   os.makedirs(directorio_imagenes, exist_ok=True)
+# Abrir la página web
+driver.get("https://www.ejemplo.com")
 
-        # Extraer enlaces, imágenes y texto
-      ##  for enlace in soup.find_all('a', href=True):
-      ##      enlace_absoluto = urljoin(url, enlace['href'])
-       ##     print(f"Enlace: {enlace_absoluto}")
-##
-       # for imagen in soup.find_all('img', src=True):
-        #    imagen_absoluta = urljoin(url, imagen['src'])
-         #   descargar_imagen(imagen_absoluta, directorio_imagenes)
+# Crear una ruta para guardar los archivos
+ruta_guardado = "C:/ruta/del/directorio/"  # Cambia esto a la ruta deseada
 
-        #texto = soup.get_text()
-        #print(f"Texto: {texto}")
+# Crear un libro de Excel y una hoja de trabajo
+wb = Workbook()
+ws = wb.active
+ws.title = "Informacion_Web"
 
-#if __name__ == "__main__":
-    # URL de ejemplo
-    url_ejemplo = "https://www.xiaohongshu.com/explore/64420138000000000800c6a5"
+# Encabezados
+ws.append(["Texto", "Enlace", "Fuente de la imagen"])
 
-    # Llamada a la función para hacer scraping
-   ## scrape_web(url_ejemplo)
+# Extraer información de la página
+elements = driver.find_elements_by_css_selector("body *")  # Puedes ajustar el selector según la estructura de la página
+
+for element in elements:
+    text = element.text
+    link = element.get_attribute("href")
+    img_src = element.get_attribute("src")
+
+    # Añadir información a la hoja de trabajo
+    ws.append([text, link, img_src])
+
+# Guardar el archivo Excel en la ruta especificada
+archivo_excel = ruta_guardado + "informacion_web.xlsx"
+wb.save(archivo_excel)
+
+# Cerrar el navegador al finalizar
+driver.quit()
+
+print(f"Los datos han sido guardados en {archivo_excel}")
