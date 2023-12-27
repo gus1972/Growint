@@ -16,6 +16,9 @@
 				},
 				{
 					"name": "source3"
+				},
+				{
+					"name": "source4"
 				}
 			],
 			"sinks": [],
@@ -36,7 +39,9 @@
 				"     validateSchema: false) ~> source2",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false) ~> source3",
-				"source1, source2 union(byName: true)~> union1"
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> source4",
+				"source1, source2, source3, source4 union(byName: true)~> union1"
 			]
 		}
 	}
