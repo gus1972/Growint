@@ -59,7 +59,7 @@
 				"     validateSchema: false,",
 				"     format: 'table',",
 				"     store: 'sqlserver',",
-				"     schemaName: '',",
+				"     schemaName: 'Grow',",
 				"     tableName: '',",
 				"     insertable: true,",
 				"     updateable: false,",
