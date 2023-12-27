@@ -24,7 +24,11 @@
 					"name": "source5"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "union1"
@@ -46,7 +50,11 @@
 				"     validateSchema: false) ~> source4",
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false) ~> source5",
-				"source1, source2, source3, source4, source5 union(byName: true)~> union1"
+				"source1, source2, source3, source4, source5 union(byName: true)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
