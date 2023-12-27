@@ -39,7 +39,11 @@
 				}
 			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          body as (comerciales as (id as short, name as string)[], count as short, total_count as short),",
+				"          headers as [string,string]",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'rest',",
 				"     timeout: 30,",
