@@ -5,10 +5,6 @@
 		"typeProperties": {
 			"sources": [
 				{
-					"dataset": {
-						"referenceName": "RestResource4",
-						"type": "DatasetReference"
-					},
 					"name": "source1"
 				}
 			],
@@ -17,11 +13,7 @@
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     httpMethod: 'GET',",
-				"     timeout: 30,",
-				"     requestInterval: 0,",
-				"     paginationRules: ['supportRFC5988' -> 'true'],",
-				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> source1"
+				"     ignoreNoFilesFound: false) ~> source1"
 			]
 		}
 	}
