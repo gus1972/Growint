@@ -14,6 +14,47 @@
 			},
 			"firstRowAsHeader": true
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Nombre Tienda",
+				"type": "String"
+			},
+			{
+				"name": "Periodo",
+				"type": "String"
+			},
+			{
+				"name": "Ventas totales",
+				"type": "String"
+			},
+			{
+				"name": "UV",
+				"type": "String"
+			},
+			{
+				"name": "Compradores",
+				"type": "String"
+			},
+			{
+				"name": "Carritos Compra",
+				"type": "String"
+			},
+			{
+				"name": "Pedido Medio",
+				"type": "String"
+			},
+			{
+				"name": "Ratio Búsqueda",
+				"type": "String"
+			},
+			{
+				"name": "Ratio Carrito Compra",
+				"type": "String"
+			},
+			{
+				"name": "ConversionR",
+				"type": "String"
+			}
+		]
 	}
 }
