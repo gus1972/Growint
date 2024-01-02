@@ -15,7 +15,13 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"method": "GET"
+					"method": "GET",
+					"datasets": [
+						{
+							"referenceName": "RestResource3",
+							"type": "DatasetReference"
+						}
+					]
 				},
 				"linkedServiceName": {
 					"referenceName": "WebConnection1",
