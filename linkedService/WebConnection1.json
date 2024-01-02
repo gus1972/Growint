@@ -1,0 +1,12 @@
+{
+	"name": "WebConnection1",
+	"properties": {
+		"annotations": [],
+		"type": "WebConnection",
+		"typeProperties": {
+			"url": "cloud.growintegration.es",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
