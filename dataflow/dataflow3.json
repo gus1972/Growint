@@ -1,0 +1,36 @@
+{
+	"name": "dataflow3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          {Nombre Tienda} as string,",
+				"          Periodo as string,",
+				"          {Ventas totales} as string,",
+				"          UV as string,",
+				"          Compradores as string,",
+				"          {Carritos Compra} as string,",
+				"          {Pedido Medio} as string,",
+				"          {Ratio B?queda} as string,",
+				"          {Ratio Carrito Compra} as string,",
+				"          ConversionR as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1"
+			]
+		}
+	}
+}
