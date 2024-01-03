@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "masqmai KPIs Store.xlsx",
+				"fileName": "masqmai KPIs Store.csv",
 				"container": "blobgrowint"
 			},
 			"columnDelimiter": ";",
