@@ -12,13 +12,13 @@
 				"type": "HttpServerLocation"
 			},
 			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
 			"escapeChar": "\\",
-			"firstRowAsHeader": true,
-			"quoteChar": "\""
+			"firstRowAsHeader": false,
+			"quoteChar": null
 		},
 		"schema": [
 			{
-				"name": "<!DOCTYPE html>",
 				"type": "String"
 			}
 		]
