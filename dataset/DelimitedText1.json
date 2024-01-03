@@ -19,6 +19,7 @@
 		},
 		"schema": [
 			{
+				"name": "Nombre Tienda;Periodo;Ventas totales;UV;Compradores;Carritos Compra;Pedido Medio;Ratio B�squeda;Ratio Carrito Compra;ConversionR\r",
 				"type": "String"
 			}
 		]
