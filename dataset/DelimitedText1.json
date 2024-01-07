@@ -2,7 +2,7 @@
 	"name": "DelimitedText1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "HttpServerStoreKpis",
+			"referenceName": "HttpServer",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -11,7 +11,7 @@
 			"location": {
 				"type": "HttpServerLocation"
 			},
-			"columnDelimiter": ";",
+			"columnDelimiter": ",",
 			"rowDelimiter": "\r",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
@@ -19,43 +19,63 @@
 		},
 		"schema": [
 			{
-				"name": "Nombre Tienda",
+				"name": "Partner_transaction_id",
 				"type": "String"
 			},
 			{
-				"name": "Periodo",
+				"name": "Amount",
 				"type": "String"
 			},
 			{
-				"name": "Ventas totales",
+				"name": "Rmb_amount",
 				"type": "String"
 			},
 			{
-				"name": "UV",
+				"name": "Fee",
 				"type": "String"
 			},
 			{
-				"name": "Compradores",
+				"name": "Settlement",
 				"type": "String"
 			},
 			{
-				"name": "Carritos Compra",
+				"name": "Rmb_settlement",
 				"type": "String"
 			},
 			{
-				"name": "Pedido Medio",
+				"name": "Currency",
 				"type": "String"
 			},
 			{
-				"name": "Ratio B?queda",
+				"name": "Rate",
 				"type": "String"
 			},
 			{
-				"name": "Ratio Carrito Compra",
+				"name": "Payment_time",
 				"type": "String"
 			},
 			{
-				"name": "ConversionR",
+				"name": "Settlement_time",
+				"type": "String"
+			},
+			{
+				"name": "Type",
+				"type": "String"
+			},
+			{
+				"name": "Status",
+				"type": "String"
+			},
+			{
+				"name": "Stem_from",
+				"type": "String"
+			},
+			{
+				"name": "Remarks",
+				"type": "String"
+			},
+			{
+				"name": "Original_partner_transaction_ID",
 				"type": "String"
 			}
 		]
