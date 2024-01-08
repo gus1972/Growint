@@ -5,7 +5,7 @@
 			"factoryStagingLSReferenceName": "AzureBlobStorage1",
 			"factoryStagingLSType": "LinkedServiceReference",
 			"factoryStagingFolderPath": "blobgrowint",
-			"PipelineBillingEnabled": "true"
+			"PipelineBillingEnabled": "false"
 		}
 	},
 	"location": "francecentral",
