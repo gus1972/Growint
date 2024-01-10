@@ -1,0 +1,83 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\r",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": null
+		},
+		"schema": [
+			{
+				"name": "Partner_transaction_id",
+				"type": "String"
+			},
+			{
+				"name": "Amount",
+				"type": "String"
+			},
+			{
+				"name": "Rmb_amount",
+				"type": "String"
+			},
+			{
+				"name": "Fee",
+				"type": "String"
+			},
+			{
+				"name": "Settlement",
+				"type": "String"
+			},
+			{
+				"name": "Rmb_settlement",
+				"type": "String"
+			},
+			{
+				"name": "Currency",
+				"type": "String"
+			},
+			{
+				"name": "Rate",
+				"type": "String"
+			},
+			{
+				"name": "Payment_time",
+				"type": "String"
+			},
+			{
+				"name": "Settlement_time",
+				"type": "String"
+			},
+			{
+				"name": "Type",
+				"type": "String"
+			},
+			{
+				"name": "Status",
+				"type": "String"
+			},
+			{
+				"name": "Stem_from",
+				"type": "String"
+			},
+			{
+				"name": "Remarks",
+				"type": "String"
+			},
+			{
+				"name": "Original_partner_transaction_ID",
+				"type": "String"
+			}
+		]
+	}
+}
