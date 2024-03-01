@@ -1,19 +1,26 @@
-trigger: none  # Desactiva el disparador de eventos de código
+trigger:
+- none
 
 schedules:
-- cron: "0 * * * *"  # Ejecutar cada hora (00 minutos de cada hora)
-  displayName: "Ejecución horaria"  # Nombre descriptivo del cron
+- cron: "0 * * * *"
+  displayName: "Every hour"
   branches:
     include:
-    - main  # Nombre de la rama en la que se ejecutará la pipeline
+    - main
 
 pool:
-  vmImage: 'ubuntu-latest'  # Imagen de la máquina virtual para ejecutar la pipeline
+  vmImage: 'ubuntu-latest'
 
-steps:
-- checkout: self  # Selecciona el repositorio actual
-- script: |
-    python3 -m pip install --upgrade pip
-    pip install -r requirements.txt  # Instala las dependencias del proyecto si es necesario
-    python3 Growint_BI/Scripts_python_automatizacion/Marcas.py  # Ruta al archivo Python que se ejecutará
-  displayName: 'Run Python script'
+jobs:
+- job: Build
+  displayName: 'Build and Run Python Script'
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+      addToPath: true
+  - script: |
+      python -m pip install -r requirements.txt
+      python Marcas.py
+    displayName: 'Run Python Script'
+
