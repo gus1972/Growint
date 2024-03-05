@@ -20,6 +20,7 @@ jobs:
       versionSpec: '3.x'
       addToPath: true
   - script: |
+      pip install requests
       pip freeze > requirements.txt
       python -m pip install -r requirements.txt
       python Growint_BI/Scripts_python_automatizacion/Marcas.py
