@@ -1,3 +1,4 @@
+
 trigger:
 - none
 
@@ -20,6 +21,8 @@ jobs:
       versionSpec: '3.x'
       addToPath: true
   - script: |
+      pip install time
+      pip install schedule
       pip install unidecode
       pip install azure-storage-blob
       pip install requests
