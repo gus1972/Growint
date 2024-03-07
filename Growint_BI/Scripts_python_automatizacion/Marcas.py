@@ -16,7 +16,7 @@ auth = ('GI_Azure', 'Tinorra1972')
 main_folder = 'Marcas'
 
 # Ruta del directorio que quieres copiar
-dir_path = '/remote.php/dav/files/GI_Azure/Marcas/'
+dir_path = '/remote.php/dav/files/GI_Azure/ES%20GD/Marcas/'
 print(dir_path)
 
 # Conexión al Blob Storage de Azure
