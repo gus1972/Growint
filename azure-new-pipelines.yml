@@ -1,0 +1,32 @@
+
+trigger:
+- none
+
+schedules:
+- cron: "0 * * * *"
+  displayName: "Every hour"
+  branches:
+    include:
+    - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: Build
+  displayName: 'Build and Run Python Script'
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+      addToPath: true
+  - script: |
+      pip install time
+      pip install schedule
+      pip install unidecode
+      pip install azure-storage-blob
+      pip install requests
+      pip freeze > requirements.txt
+      python -m pip install -r requirements.txt
+      python Growint_BI/Scripts_python_automatizacion/Marcas.py
+    displayName: 'Run Python Script'
