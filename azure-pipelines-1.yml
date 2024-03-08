@@ -1,11 +1,14 @@
-trigger: 
--
-schedules:
-- cron: "0 * * * *"
-  displayName: "Every hour"
+trigger:
   branches:
     include:
     - main
+
+schedules:
+ - cron: "0 * * * *"
+   displayName: "Every hour"
+   branches:
+     include:
+     - main
 
 pool:
   vmImage: 'ubuntu-latest'
