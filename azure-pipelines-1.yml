@@ -1,6 +1,5 @@
-
-trigger:
-- none
+trigger: 
+ - '* * * * *'
 
 schedules:
 - cron: "0 * * * *"
