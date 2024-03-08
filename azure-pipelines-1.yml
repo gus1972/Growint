@@ -1,6 +1,5 @@
 trigger: 
- - '* * * * *'
-
+-
 schedules:
 - cron: "0 * * * *"
   displayName: "Every hour"
