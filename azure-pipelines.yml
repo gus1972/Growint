@@ -1,12 +1,12 @@
 trigger:
-- none
-
+  - none
 schedules:
-- cron: "0 * * * *"
-  displayName: "Every hour"
-  branches:
-    include:
-    - main
+ - cron: "0 0 1 * *"
+   displayName: "Every month"
+   branches:
+     include:
+     - main
+   always: true
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -20,7 +20,13 @@ jobs:
       versionSpec: '3.x'
       addToPath: true
   - script: |
+      pip install time
+      pip install schedule
+      pip install unidecode
+      pip install azure-storage-blob
+      pip install requests
+      pip freeze > requirements.txt
       python -m pip install -r requirements.txt
-      python Marcas.py
+      python Growint_BI/Scripts_python_automatizacion/Diccionarios.py
+      python Growint_BI/Scripts_python_automatizacion/Diccionarios_Productos.py
     displayName: 'Run Python Script'
-
