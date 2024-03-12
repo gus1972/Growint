@@ -28,5 +28,5 @@ jobs:
       pip freeze > requirements.txt
       python -m pip install -r requirements.txt
       python Growint_BI/Scripts_python_automatizacion/Diccionarios.py
-      python Growint_BI/Scripts_python_automatizacion/Diccionarios_Productos.py
+      python Growint_BI/Scripts_python_automatizacion/Diccionario_Productos.py
     displayName: 'Run Python Script'
