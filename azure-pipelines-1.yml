@@ -32,7 +32,7 @@ jobs:
 
   - task: SendGridEmail@2
     inputs:
-      SendGridApiKey: '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'
+      SendGridApiKey: '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'
       FromAddress: 'info@dataglobalservice.es'
       ToAddresses: 'gustavo.anton@globaldataservice.es'
       Subject: 'Fallo ejecución pipeline'
