@@ -29,3 +29,12 @@ jobs:
       python -m pip install -r requirements.txt
       python Growint_BI/Scripts_python_automatizacion/Marcas.py
     displayName: 'Run Python Script'
+
+  - task: SendGridEmail@2
+    inputs:
+      SendGridApiKey: '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'
+      FromAddress: 'info@dataglobalservice.es'
+      ToAddresses: 'gustavo.anton@globaldataservice.es'
+      Subject: 'Fallo ejecución pipeline'
+      emailBodyFormat: 'InLine'
+      EmailBody: 'La ejecución de la pipeline, gus1972.Growint(1) ha fallado, revise errores, por favor.'
