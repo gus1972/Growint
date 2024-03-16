@@ -30,12 +30,13 @@ jobs:
       python Growint_BI/Scripts_python_automatizacion/Marcas.py
     displayName: 'Run Python Script'
     continueOnError: true
-  - task: SendGridEmail@2
+  - task: PowerShell@1
     inputs:
-      SendGridApiKey: '$(grow)'
-      FromAddress: 'info@dataglobalservice.es'
-      ToAddresses: 'gustavo.anton@dataglobalservice.es'
-      Subject: 'Fallo en la pipeline'
-      emailBodyFormat: 'InLine'
-      EmailBody: 'Por favor, revisa la ejecución de la pipeline, ha surgido un error en la misma'
+      targetType: 'inline'
+      script: 
+        $emailAddress = "gustavo.anton@dataglobalservice.es"
+        $subject = "Fallo en la pipeline"
+        $body = "Por favor, revisa la ejecución de la pipeline, ha surgido un error en la misma"
+        Send-MailMessage -To $emailAddress -Subject $subject -Body $body -SmtpServer "smtp.dataglobalservice.es" -Port 465
+      displayName: 'Send Email on Failure'
     condition: failed() # Esta tarea se ejecutará sólo si el paso anterior falla
