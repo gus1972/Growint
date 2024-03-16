@@ -30,11 +30,11 @@ jobs:
       python Growint_BI/Scripts_python_automatizacion/Marcas.py
     displayName: 'Run Python Script'
     continueOnError: true
-  - task: SendGridEmail@2
-    inputs:
-      SendGridApiKey: '$(grow)'
-      FromAddress: 'info@dataglobalservice.es'
-      ToAddresses: 'gustavo.anton@dataglobalservice.es'
-      Subject: 'Fallo en la pipeline'
-      emailBodyFormat: 'InLine'
-      EmailBody: 'Por favor, revisa la ejecución de la pipeline, ha surgido un error en la misma'
+ # - task: SendGridEmail@2
+ #   inputs:
+ #     SendGridApiKey: '$(grow)'
+ #     FromAddress: 'info@dataglobalservice.es'
+ #     ToAddresses: 'gustavo.anton@dataglobalservice.es'
+ #     Subject: 'Fallo en la pipeline'
+ #     emailBodyFormat: 'InLine'
+ #     EmailBody: 'Por favor, revisa la ejecución de la pipeline, ha surgido un error en la misma'
