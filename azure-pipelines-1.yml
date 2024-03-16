@@ -29,7 +29,7 @@ jobs:
       python -m pip install -r requirements.txt
       python Growint_BI/Scripts_python_automatizacion/Marcas.py
     displayName: 'Run Python Script'
-    continueOnError: true
+    #continueOnError: true
   - task: PowerShell@1
     inputs:
       targetType: 'inline'
