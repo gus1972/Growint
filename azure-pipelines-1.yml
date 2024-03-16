@@ -30,6 +30,7 @@ jobs:
       python Growint_BI/Scripts_python_automatizacion/Marcas.py
     displayName: 'Run Python Script'
     #continueOnError: true
+    condition: always() # La canalización se relanzará incluso si la tarea falla
   - task: PowerShell@1
     inputs:
       targetType: 'inline'
