@@ -31,13 +31,5 @@ jobs:
     displayName: 'Run Python Script'
     #continueOnError: true
     condition: always() # La canalización se relanzará incluso si la tarea falla
-  - task: PowerShell@1
-    inputs:
-      targetType: 'inline'
-      script: 
-        $emailAddress = "gustavo.anton@dataglobalservice.es"
-        $subject = "Fallo en la pipeline"
-        $body = "Por favor, revisa la ejecución de la pipeline, ha surgido un error en la misma"
-        Send-MailMessage -To $emailAddress -Subject $subject -Body $body -SmtpServer "smtp.dataglobalservice.es" -Port 465
-      displayName: 'Send Email on Failure'
-    condition: failed() # Esta tarea se ejecutará sólo si el paso anterior falla
+
+    
