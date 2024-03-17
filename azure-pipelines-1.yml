@@ -40,7 +40,7 @@ jobs:
       emailAddress="gustavo.anton@dataglobalservice.es"
       subject="Fallo en la pipeline"
       body="Por favor, revisa la ejecución de la pipeline, ha surgido un error en la misma"
-      echo -e "$body" | mail -s "$subject" -a "From: gustavo.anton@dataglobalservice.es" $emailAddress
+      echo -e "$body" | mail -s "$subject" -a "From: info@dataglobalservice.es" $emailAddress
     displayName: 'Send Email on Failure'
     condition: failed() # Esta tarea se ejecutará sólo si el paso anterior falla
 
