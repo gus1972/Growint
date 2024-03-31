@@ -5,7 +5,9 @@ from unidecode import unidecode
 from urllib.parse import unquote
 import schedule
 import time
+import datetime
 from azure.core.exceptions import ResourceExistsError
+from concurrent.futures import ThreadPoolExecutor
 
 # URL del servidor Nextcloud
 url = 'https://cloud.growintegration.es'
@@ -44,44 +46,41 @@ else:
 # Listar los archivos en el directorio
 response = requests.request('PROPFIND', url + dir_path, auth=auth, headers={'Depth': 'infinity'})
 print(response.status_code)
+
+def upload_file(href):
+    if href != dir_path:  # Ignorar el directorio en sí
+        print(href)
+        print(dir_path)
+        print(len(dir_path))
+        file_path = href[len(dir_path):]  # Quitar la ruta del directorio
+        print(file_path)
+        # Reemplazar %20 por un espacio en blanco
+        file_path = unquote(file_path.replace('%20', ' '))
+        print(file_path)
+        # Leer el archivo desde Nextcloud
+        response = requests.get(url + href, auth=auth)
+        print(response)
+        if response.status_code == 200:
+            today = datetime.datetime.today()
+            if today.weekday() < 9:  # No es fin de semana
+                try:
+                    blob_client = container_client.get_blob_client(main_folder + '/' + file_path)
+                    blob_client.upload_blob(response.content)
+                    print("Blob created successfully.")
+                except ResourceExistsError:
+                    # Handle the case where the blob already exists
+                    print("Blob already exists. You may want to update or delete it.")
+                    blob_client.upload_blob(response.content, overwrite=True)
+        else:
+            print(f'Error al leer el archivo {file_path}: {response.status_code}')
+
 if response.status_code == 207:
     # Parsear la respuesta XML
     from xml.etree import ElementTree as ET
     root = ET.fromstring(response.content)
-    for response in root.findall('{DAV:}response'):
-        href = response.find('{DAV:}href').text
-        print(href)
-        if href != dir_path:  # Ignorar el directorio en sí
-            print(href)
-            print(dir_path)
-            print(len(dir_path))
-            file_path = href[len(dir_path):]  # Quitar la ruta del directorio
-            print(file_path)
-            # Reemplazar %20 por un espacio en blanco
-            file_path = unquote(file_path.replace('%20', ' '))
-            print(file_path)
-            # Leer el archivo desde Nextcloud
-           # file_path = fix_text(file_path)
-            #print(file_path)
-            response = requests.get(url + href, auth=auth)
-            print(response)
-            if response.status_code == 200:
-                 # Decodificar el contenido del archivo
-                #contenido = response.content.decode('ISO-8859-1')
-                # Convertir el contenido a ASCII
-                #contenido_ascii = unidecode(contenido)
-                # Subir el archivo a Azure Blob Storage
-                #blob_client = container_client.get_blob_client(main_folder + '/' + file_path)
-                #blob_client.upload_blob(response.content)
-              try:
-                    blob_client = container_client.get_blob_client(main_folder + '/' + file_path)
-                    blob_client.upload_blob(response.content)
-                    print("Blob created successfully.")
-              except ResourceExistsError:
-                 # Handle the case where the blob already exists
-                print("Blob already exists. You may want to update or delete it.")
-                blob_client.upload_blob(response.content, overwrite=True)
-            else:
-                print(f'Error al leer el archivo {file_path}: {response.status_code}')
+    hrefs = [response.find('{DAV:}href').text for response in root.findall('{DAV:}response')]
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        executor.map(upload_file, hrefs)
 else:
     print(f'Error al listar el directorio {dir_path}: {response.status_code}')
+
