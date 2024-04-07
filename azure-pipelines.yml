@@ -15,6 +15,10 @@ jobs:
 - job: Build
   displayName: 'Build and Run Python Script'
   steps:
+ # - script: |
+ #     sudo apt-get update
+ #     sudo apt-get install -y mailutils
+ #   displayName: 'Install mailutils'
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3.x'
@@ -29,7 +33,16 @@ jobs:
       python -m pip install -r requirements.txt
       python Growint_BI/Scripts_python_automatizacion/Marcas.py
     displayName: 'Run Python Script'
-  
+    #continueOnError: true
+    #condition: always() # La canalización se relanzará incluso si la tarea falla
+  - bash: |
+      #!/bin/bash
+  #    emailAddress="gustavo.anton@dataglobalservice.es"
+  #    subject="Fallo en la pipeline"
+  #    body="Por favor, revisa la ejecución de la pipeline, ha surgido un error en la misma"
+  #    echo -e "$body" | mail -s "$subject" -a "From: info@dataglobalservice.es" $emailAddress
+  #  displayName: 'Send Email on Failure'
+  #  condition: failed() # Esta tarea se ejecutará sólo si el paso anterior falla
 
     
     
