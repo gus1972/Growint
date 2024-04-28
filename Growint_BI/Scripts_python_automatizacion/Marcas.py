@@ -71,7 +71,7 @@ if start_time <= now <= end_time:
             print(response)
             if response.status_code == 200:
                 today = datetime.datetime.today()
-                if today.weekday() <= 5:  # No es fin de semana
+                if today.weekday() < 5:  # No es fin de semana
                     try:
                         blob_client = container_client.get_blob_client(main_folder + '/' + file_path)
                         blob_client.upload_blob(response.content)
