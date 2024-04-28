@@ -13,8 +13,8 @@ from concurrent.futures import ThreadPoolExecutor
 now = datetime.datetime.now().time()
 
 # Define las horas de inicio y fin
-start_time = datetime.time(6, 54)  # 07:30 AM
-end_time = datetime.time(23, 30)  # 06:30 PM
+start_time = datetime.time(6, 54)  # 06:54 AM
+end_time = datetime.time(18, 54)  # 18:54 PM
 
 # Comprueba si la hora actual está dentro del rango
 if start_time <= now <= end_time:
@@ -71,7 +71,7 @@ if start_time <= now <= end_time:
             print(response)
             if response.status_code == 200:
                 today = datetime.datetime.today()
-                if today.weekday() < 9:  # No es fin de semana
+                if today.weekday() <= 5:  # No es fin de semana
                     try:
                         blob_client = container_client.get_blob_client(main_folder + '/' + file_path)
                         blob_client.upload_blob(response.content)
@@ -93,4 +93,4 @@ if start_time <= now <= end_time:
     else:
         print(f'Error al listar el directorio {dir_path}: {response.status_code}')
 else:
-    print("La hora actual no está dentro del rango de 07:30 a 23:30.")
+    print("La hora actual no está dentro del rango de 06:54 a 18:54.")
