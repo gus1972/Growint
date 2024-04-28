@@ -14,7 +14,7 @@ now = datetime.datetime.now().time()
 
 # Define las horas de inicio y fin
 start_time = datetime.time(6, 54)  # 06:54 AM
-end_time = datetime.time(18, 54)  # 18:54 PM
+end_time = datetime.time(18, 00)  # 18:00 PM
 
 # Comprueba si la hora actual está dentro del rango
 if start_time <= now <= end_time:
@@ -93,4 +93,4 @@ if start_time <= now <= end_time:
     else:
         print(f'Error al listar el directorio {dir_path}: {response.status_code}')
 else:
-    print("La hora actual no está dentro del rango de 06:54 a 18:54.")
+    print("La hora actual no está dentro del rango de 06:54 a 18:00.")
