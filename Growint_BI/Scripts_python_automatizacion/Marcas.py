@@ -17,7 +17,8 @@ start_time = datetime.time(6, 54)  # 06:54 AM
 end_time = datetime.time(18, 00)  # 18:00 PM
 
 # Comprueba si la hora actual está dentro del rango
-if start_time <= now <= end_time:
+#if start_time <= now <= end_time:
+if now>=start_time and now <=end_time:
     # URL del servidor Nextcloud
     url = 'https://cloud.growintegration.es'
 
