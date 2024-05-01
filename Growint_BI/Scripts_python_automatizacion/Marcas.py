@@ -13,7 +13,7 @@ from concurrent.futures import ThreadPoolExecutor
 now = datetime.datetime.now().time()
 
 # Define las horas de inicio y fin
-start_time = datetime.time(6, 54)  # 06:54 AM
+start_time = datetime.time(5, 54)  # 05:54 AM
 end_time = datetime.time(16, 54)  # 16:54 PM
 
 # Comprueba si la hora actual está dentro del rango
