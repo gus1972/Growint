@@ -13,8 +13,8 @@ from concurrent.futures import ThreadPoolExecutor
 now = datetime.datetime.now().time()
 
 # Define las horas de inicio y fin
-start_time = datetime.time(6, 54)  # 06:54 AM
-end_time = datetime.time(18, 00)  # 18:00 PM
+start_time = datetime.time(06, 54)  # 06:54 AM
+end_time = datetime.time(17, 54)  # 17:54 PM
 
 # Comprueba si la hora actual está dentro del rango
 #if start_time <= now <= end_time:
@@ -94,4 +94,4 @@ if now>=start_time and now <=end_time:
     else:
         print(f'Error al listar el directorio {dir_path}: {response.status_code}')
 else:
-    print("La hora actual no está dentro del rango de 06:54 a 18:00.")
+    print("La hora actual no está dentro del rango de 06:54 a 17:54.")
