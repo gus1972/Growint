@@ -89,7 +89,7 @@ if now>=start_time and now <=end_time:
         from xml.etree import ElementTree as ET
         root = ET.fromstring(response.content)
         hrefs = [response.find('{DAV:}href').text for response in root.findall('{DAV:}response')]
-        with ThreadPoolExecutor(max_workers=30) as executor:
+        with ThreadPoolExecutor(max_workers=50) as executor:
             executor.map(upload_file, hrefs)
     else:
         print(f'Error al listar el directorio {dir_path}: {response.status_code}')
