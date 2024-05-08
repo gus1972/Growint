@@ -14,7 +14,7 @@ now = datetime.datetime.now().time()
 
 # Define las horas de inicio y fin
 start_time = datetime.time(5, 54)  # 05:54 AM
-end_time = datetime.time(16, 54)  # 16:54 PM
+end_time = datetime.time(22, 54)  # 16:54 PM
 
 # Comprueba si la hora actual está dentro del rango
 #if start_time <= now <= end_time:
