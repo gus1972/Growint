@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure AD Token</title>
+    <!-- Carga de librerías -->
+    <script src="https://alcdn.msauth.net/browser/2.17.0/js/msal-browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/powerbi-client/2.22.3/powerbi.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+	
+	     // Registro del Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then((registration) => {
+                    console.log('Service Worker registrado con éxito:', registration.scope);
+                }).catch((error) => {
+                    console.log('Fallo en el registro del Service Worker:', error);
+                });
+            });
+        }
+	
+	
+        // Configuración de MSAL
+        const msalConfig = {
+            auth: {
+                clientId: "d27ad9f2-9415-4a3e-affc-964d232da685",
+                authority: "https://login.microsoftonline.com/70d01e02-bce4-44b1-b646-fbf6cbb33d61",
+                redirectUri: window.location.href // Usa la URL actual como URI de redirección
+            },
+            cache: {
+                cacheLocation: "localStorage",
+                storeAuthStateInCookie: true
+            }
+        };
+
+        const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+        const getNewAccessToken = async function () {
+            const loginRequest = {
+                scopes: ["https://analysis.windows.net/powerbi/api/.default"] // Cambia esto según el alcance que necesites
+            };
+
+            try {
+                const accounts = msalInstance.getAllAccounts();
+                if (accounts.length === 0) {
+                    // Si no hay cuentas, redirigir al usuario para iniciar sesión
+                    if (!msalInstance.interactionInProgress) {
+                        msalInstance.loginRedirect(loginRequest);
+                    } else {
+                        console.log("Interaction already in progress.");
+                    }
+                } else {
+                    // Obtener el token de acceso silenciosamente
+                    const tokenRequest = {
+                        scopes: ["https://analysis.windows.net/powerbi/api/.default"],
+                        account: accounts[0]
+                    };
+                    const tokenResponse = await msalInstance.acquireTokenSilent(tokenRequest);
+                    return tokenResponse.accessToken;
+                }
+            } catch (error) {
+                if (error instanceof msal.InteractionRequiredAuthError) {
+                    // Si se necesita interacción, usa redirección para adquirir el token
+                    if (!msalInstance.interactionInProgress) {
+                        msalInstance.acquireTokenRedirect(loginRequest);
+                    } else {
+                        console.log("Interaction already in progress.");
+                    }
+                } else {
+                    console.error(error);
+                    throw new Error("Error getting access token");
+                }
+            }
+        };
+
+        // Función para inicializar el informe de Power BI
+        async function initializeReport() {
+            try {
+                // Manejar cualquier redirección pendiente
+                await msalInstance.handleRedirectPromise();
+
+                // Obtén el token de acceso inicialmente
+                const initialAccessToken = await getNewAccessToken();
+
+                let config = {
+                    type: 'report',
+                    tokenType: window['powerbi-client'].models.TokenType.Aad,
+                    accessToken: initialAccessToken,
+                    embedUrl: "https://app.powerbi.com/reportEmbed?reportId=642fee4b-31c2-42e1-a3b1-5416a21445ce&groupId=f9133e48-b95a-4348-992e-2aa96e96ae9f",
+                    eventHooks: {
+                        accessTokenProvider: getNewAccessToken
+                    },
+                    settings: {
+                        filterPaneEnabled: false,
+                        navContentPaneEnabled: false,
+                        menuVisible: false
+                    }
+                };
+
+                // Obtiene una referencia al contenedor del informe
+                let embedContainer = $('#embedContainer')[0];
+
+                // Incrusta el informe y muéstralo dentro del contenedor div
+                let report = powerbi.embed(embedContainer, config);
+            } catch (error) {
+                console.error("Error embedding Power BI report", error);
+            }
+        }
+
+        $(document).ready(function() {
+            msalInstance.handleRedirectPromise().then((response) => {
+                if (response !== null && response.account) {
+                    initializeReport();
+                } else {
+                    const accounts = msalInstance.getAllAccounts();
+                    if (accounts.length > 0) {
+                        initializeReport();
+                    } else {
+                        // Si no hay cuentas, redirigir para el login
+                        msalInstance.loginRedirect({
+                            scopes: ["https://analysis.windows.net/powerbi/api/.default"]
+                        });
+                    }
+                }
+            }).catch(error => {
+                console.error("Error handling redirect promise", error);
+                // Redirigir al usuario para el login en caso de error
+                msalInstance.loginRedirect({
+                    scopes: ["https://analysis.windows.net/powerbi/api/.default"]
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Define un contenedor para el informe -->
+    <div id="embedContainer" style="width: 800px; height: 600px;"></div>
+</body>
+</html>
