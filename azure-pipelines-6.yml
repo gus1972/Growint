@@ -1,36 +1,48 @@
-# Python package
-# Create and test a Python package on multiple Python versions.
-# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/python
-
 trigger:
-- main
+  - none
+schedules:
+ #- cron: "54 * * * *"
+  # displayName: "Every hour"
+  # branches:
+  #   include:
+  #   - main
+  # always: true
 
 pool:
-  vmImage: ubuntu-latest
-strategy:
-  matrix:
-    Python27:
-      python.version: '2.7'
-    Python35:
-      python.version: '3.5'
-    Python36:
-      python.version: '3.6'
-    Python37:
-      python.version: '3.7'
+  vmImage: 'ubuntu-latest'
 
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
+jobs:
+- job: Build
+  displayName: 'Build and Run Python Script'
+  steps:
+ # - script: |
+ #     sudo apt-get update
+ #     sudo apt-get install -y mailutils
+ #   displayName: 'Install mailutils'
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+      addToPath: true
+  - script: 
+     # pip install time
+     # pip install schedule
+     # pip install unidecode
+     # pip install azure-storage-blob
+     # pip install requests
+     # pip freeze > requirements.txt
+     # python -m pip install -r requirements.txt
+     # python Growint_BI/Scripts_python_automatizacion/Marcas.py
+    #displayName: 'Run Python Script'#/
+    #continueOnError: true
+    #condition: always() # La canalización se relanzará incluso si la tarea falla
+  - bash: |
+      #!/bin/bash
+  #    emailAddress="gustavo.anton@dataglobalservice.es"
+  #    subject="Fallo en la pipeline"
+  #    body="Por favor, revisa la ejecución de la pipeline, ha surgido un error en la misma"
+  #    echo -e "$body" | mail -s "$subject" -a "From: info@dataglobalservice.es" $emailAddress
+  #  displayName: 'Send Email on Failure'
+  #  condition: failed() # Esta tarea se ejecutará sólo si el paso anterior falla
 
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  displayName: 'Install dependencies'
-
-- script: |
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+    
+    
